@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartBin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="light-mode">
     <nav>
-        <h1>🗑️ SmartBin Dashboard</h1>
-        <button id="theme-toggle">🌓</button>
+        <div class="nav-left">
+            <h1>🗑️ SmartBin Dashboard</h1>
+            <div class="datetime-display">
+                <div id="current-date">Loading...</div>
+                <div id="current-time">Loading...</div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div id="last-update">Last Update: Loading...</div>
+            <button id="theme-toggle">🌓</button>
+        </div>
     </nav>
 
     <div class="container">
@@ -37,27 +48,43 @@
             <div class="metric-card">
                 <h3>Location</h3>
                 <div id="location-display" class="location-info">
-                    Loading...
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Loading...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <h3>Battery Status</h3>
+                <div id="battery-status" class="battery-display">
+                    <i class="fas fa-battery-full"></i>
+                    <span id="battery-percentage">Loading...</span>
                 </div>
             </div>
         </div>
 
         <div class="charts-section">
-            <div class="chart-card">
-                <h3>Fill Level History</h3>
-                <canvas id="fillLevelChart"></canvas>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Fill Level History</h3>
+                    <canvas id="fillLevelChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Air Quality Trends</h3>
+                    <canvas id="airQualityChart"></canvas>
+                </div>
             </div>
         </div>
 
         <div class="history-section">
-            <h3>Recent Records</h3>
+            <h3>Recent Activity</h3>
             <div class="table-container">
                 <table id="history-table">
                     <thead>
                         <tr>
-                            <th>Timestamp</th>
+                            <th>Time</th>
                             <th>Fill Level</th>
                             <th>Air Quality</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody id="history-tbody"></tbody>
@@ -66,7 +93,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
