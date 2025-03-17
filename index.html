@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body class="light-mode">
+    <nav>
+        <h1>🗑️ SmartBin Dashboard</h1>
+        <button id="theme-toggle">🌓</button>
+    </nav>
+
+    <div class="container">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>Fill Level</h3>
+                <div class="progress-container">
+                    <div id="fill-level-progress" class="progress-bar"></div>
+                    <span id="fill-level-text">0%</span>
+                </div>
+                <div id="fill-alert" class="alert hidden">⚠️ Bin nearly full!</div>
+            </div>
+
+            <div class="metric-card">
+                <h3>Air Quality</h3>
+                <div id="air-quality-status" class="status-display">
+                    <span id="air-quality-text">Loading...</span>
+                    <span id="air-quality-icon">🌿</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <h3>Location</h3>
+                <div id="location-display" class="location-info">
+                    Loading...
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3>Fill Level History</h3>
+                <canvas id="fillLevelChart"></canvas>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h3>Recent Records</h3>
+            <div class="table-container">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Fill Level</th>
+                            <th>Air Quality</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
